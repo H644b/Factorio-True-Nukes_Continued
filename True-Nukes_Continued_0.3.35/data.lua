@@ -81,7 +81,7 @@ if(settings.startup["enable-fire-shield"].value) then
       name = "fire-shield-equipment",
       icon = "__True-Nukes_Continued__/graphics/fire-shield-equipment-icon.png",
       icon_size = 64, icon_mipmaps = 4,
-      placed_as_equipment_result = "fire-shield-equipment",
+      place_as_equipment_result = "fire-shield-equipment",
       subgroup = "military-equipment",
       order = "a[shield]-aA[fire-shield-equipment]",
       default_request_amount = 5,
