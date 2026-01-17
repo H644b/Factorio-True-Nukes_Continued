@@ -361,26 +361,28 @@ data:extend{
         }
       }
     },
-    animation =
-    {
-      layers =
+    graphics_set = {
+      animation =
       {
+        layers =
         {
-          filename = "__True-Nukes_Continued__/graphics/megaton-nuke/megaton-nuke-base.png",
-          width = 212,
-          height = 192,
-          shift = util.by_pixel(0, -5),
-          scale = 0.5
-        },
-        {
-          filename = "__True-Nukes_Continued__/graphics/megaton-nuke/megaton-nuke-shadow.png",
-          priority = "high",
-          width = 287,
-          height = 159,
-          repeat_count = repeat_count,
-          shift = util.by_pixel(20, 6),
-          draw_as_shadow = true,
-          scale = 0.5
+          {
+            filename = "__True-Nukes_Continued__/graphics/megaton-nuke/megaton-nuke-base.png",
+            width = 212,
+            height = 192,
+            shift = util.by_pixel(0, -5),
+            scale = 0.5
+          },
+          {
+            filename = "__True-Nukes_Continued__/graphics/megaton-nuke/megaton-nuke-shadow.png",
+            priority = "high",
+            width = 287,
+            height = 159,
+            repeat_count = repeat_count,
+            shift = util.by_pixel(20, 6),
+            draw_as_shadow = true,
+            scale = 0.5
+          }
         }
       }
     },

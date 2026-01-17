@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.36
+Date: 2026-01-17
+  Bugfixes:
+    - Fixed fusion test site being invisible
+    - Fixed incorrect dependency for TN-Graphics_Continued
+    - Fixed fire shield equipment not being equippable
+---------------------------------------------------------------------------------------------------
 Version: 0.3.35
 Date: 2025-12-29
   Changes:

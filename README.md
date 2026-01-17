@@ -5,8 +5,6 @@ Ported to 2.0 by Daimonfire
 
 All credit goes to the original creator of this mod, BicycleEater
 
-I AM AWARE THAT THE RESEARCH SYSTEM USING THE TESTING FACILITIES DOES NOT WORK RIGHT NOW
-
 # Original Description
 
 The Factorio in-built atomic weapons are tiny, and don't really model the destructive side-effects of the blast. Sure, the explosions blast out in a ring, but then they just stop. What about the fire, the blast wave crashing across the world. It just won't do!
