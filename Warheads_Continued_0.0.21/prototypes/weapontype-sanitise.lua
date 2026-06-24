@@ -240,6 +240,22 @@ local function sanitseWeapontype(weapontype)
   if not result.item.action_creator then
     if result.type == "projectile" or result.type == "artillery" then
       result.item.action_creator = function (projectile, range_mult, target_action, final_action, source_action)
+        if not (item.ammo_type and item.ammo_type.action) then
+          local action_delivery = {type = "projectile", projectile = projectile}
+          if target_action then
+            action_delivery.target_effects = {{type = "nested-result", action = target_action}}
+          end
+          if final_action then
+            if not action_delivery.target_effects then
+              action_delivery.target_effects = {}
+            end
+            table.insert(action_delivery.target_effects, {type = "nested-result", action = final_action})
+          end
+          if source_action then
+            action_delivery.source_effects = {{type = "nested-result", action = source_action}}
+          end
+          return {type = "direct", action_delivery = action_delivery}
+        end
         local a = table.deepcopy(item.ammo_type.action)
         local to_use = nil
         for _,act in pairs(a) do
@@ -247,9 +263,9 @@ local function sanitseWeapontype(weapontype)
           if(a.action_delivery)then
             action = a
           end
-          if(action.action_delivery.projectile) then
+          if(action.action_delivery and action.action_delivery.projectile) then
             to_use = action.action_delivery
-          else
+          elseif action.action_delivery then
             for _,del in pairs(action.action_delivery) do
               if (type(del) == "table" and del.projectile) then
                 to_use = del
@@ -280,6 +296,22 @@ local function sanitseWeapontype(weapontype)
       end
     elseif result.type == "stream" then
       result.item.action_creator = function (stream, range_mult, target_action, final_action, source_action)
+        if not (item.ammo_type and item.ammo_type.action) then
+          local action_delivery = {type = "stream", stream = stream}
+          if target_action then
+            action_delivery.target_effects = {{type = "nested-result", action = target_action}}
+          end
+          if final_action then
+            if not action_delivery.target_effects then
+              action_delivery.target_effects = {}
+            end
+            table.insert(action_delivery.target_effects, {type = "nested-result", action = final_action})
+          end
+          if source_action then
+            action_delivery.source_effects = {{type = "nested-result", action = source_action}}
+          end
+          return {type = "direct", action_delivery = action_delivery}
+        end
         local a = table.deepcopy(item.ammo_type.action)
         local to_use = nil
 
@@ -288,9 +320,9 @@ local function sanitseWeapontype(weapontype)
           if(a.action_delivery)then
             action = a
           end
-          if(action.action_delivery.stream) then
+          if(action.action_delivery and action.action_delivery.stream) then
             to_use = action.action_delivery
-          else
+          elseif action.action_delivery then
             for _,del in pairs(action.action_delivery) do
               if (del.stream) then
                 to_use = del
@@ -341,6 +373,22 @@ local function sanitseWeapontype(weapontype)
       end
     elseif result.type == "bullet" then
       result.item.action_creator = function (projectile, range_mult, target_action, final_action, source_action)
+        if not (item.ammo_type and item.ammo_type.action) then
+          local action_delivery = {type = "instant"}
+          if target_action then
+            action_delivery.target_effects = {{type = "nested-result", action = target_action}}
+          end
+          if final_action then
+            if not action_delivery.target_effects then
+              action_delivery.target_effects = {}
+            end
+            table.insert(action_delivery.target_effects, {type = "nested-result", action = final_action})
+          end
+          if source_action then
+            action_delivery.source_effects = {{type = "nested-result", action = source_action}}
+          end
+          return {type = "direct", action_delivery = action_delivery}
+        end
         local a = table.deepcopy(item.ammo_type.action)
         local to_use = nil
 
@@ -349,9 +397,9 @@ local function sanitseWeapontype(weapontype)
           if(a.action_delivery)then
             action = a
           end
-          if(action.action_delivery.type) then
+          if(action.action_delivery and action.action_delivery.type) then
             to_use = action.action_delivery
-          else
+          elseif action.action_delivery then
             for _,del in pairs(action.action_delivery) do
               if (del.type == "instant") then
                 to_use = del
@@ -519,6 +567,4 @@ end
 
 
 return sanitseWeapontype
-
-
 
