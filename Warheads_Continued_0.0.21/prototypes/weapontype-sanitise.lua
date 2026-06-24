@@ -242,6 +242,15 @@ local function sanitseWeapontype(weapontype)
       result.item.action_creator = function (projectile, range_mult, target_action, final_action, source_action)
         if not (item.ammo_type and item.ammo_type.action) then
           local action_delivery = {type = "projectile", projectile = projectile}
+          if target_action then
+            action_delivery.target_effects = {{type = "nested-result", action = target_action}}
+          end
+          if final_action then
+            if not action_delivery.target_effects then
+              action_delivery.target_effects = {}
+            end
+            table.insert(action_delivery.target_effects, {type = "nested-result", action = final_action})
+          end
           if source_action then
             action_delivery.source_effects = {{type = "nested-result", action = source_action}}
           end
@@ -289,6 +298,15 @@ local function sanitseWeapontype(weapontype)
       result.item.action_creator = function (stream, range_mult, target_action, final_action, source_action)
         if not (item.ammo_type and item.ammo_type.action) then
           local action_delivery = {type = "stream", stream = stream}
+          if target_action then
+            action_delivery.target_effects = {{type = "nested-result", action = target_action}}
+          end
+          if final_action then
+            if not action_delivery.target_effects then
+              action_delivery.target_effects = {}
+            end
+            table.insert(action_delivery.target_effects, {type = "nested-result", action = final_action})
+          end
           if source_action then
             action_delivery.source_effects = {{type = "nested-result", action = source_action}}
           end
@@ -549,5 +567,4 @@ end
 
 
 return sanitseWeapontype
-
 
