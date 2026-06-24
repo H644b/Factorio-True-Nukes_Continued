@@ -512,7 +512,7 @@ local function sanitseWeapontype(weapontype)
   end
   result.projectile = {}
   if weapontype.projectile then
-    result.projectile.acceleration = weapontype.projectile_acceleration or weapontype.projectile.acceleration
+    result.projectile.acceleration = weapontype.projectile_acceleration or weapontype.projectile.acceleration or 0
     result.projectile.picture = weapontype.projectile_picture or weapontype.animation or weapontype.projectile.picture or weapontype.projectile.animation
     result.projectile.shadow = weapontype.projectile_shadow  or weapontype.projectile.shadow
     result.projectile.smoke = weapontype.projectile_smoke  or weapontype.projectile.smoke
@@ -541,7 +541,7 @@ local function sanitseWeapontype(weapontype)
     end
     result.projectile.map_color = weapontype.map_color or weapontype.projectile.map_color
   else
-    result.projectile.acceleration = weapontype.projectile_acceleration
+    result.projectile.acceleration = weapontype.projectile_acceleration or 0
     result.projectile.picture = weapontype.projectile_picture
     result.projectile.shadow = weapontype.projectile_shadow
     result.projectile.smoke = weapontype.projectile_smoke
