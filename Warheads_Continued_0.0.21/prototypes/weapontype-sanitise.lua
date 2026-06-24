@@ -241,7 +241,11 @@ local function sanitseWeapontype(weapontype)
     if result.type == "projectile" or result.type == "artillery" then
       result.item.action_creator = function (projectile, range_mult, target_action, final_action, source_action)
         if not (item.ammo_type and item.ammo_type.action) then
-          local action_delivery = {type = "projectile", projectile = projectile}
+          local action_delivery = {
+            type = "projectile",
+            projectile = projectile,
+            starting_speed = (item.ammo_type and item.ammo_type.shoot_speed) or 1
+          }
           if target_action then
             action_delivery.target_effects = {{type = "nested-result", action = target_action}}
           end
@@ -567,4 +571,3 @@ end
 
 
 return sanitseWeapontype
-
